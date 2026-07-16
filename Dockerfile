@@ -4,11 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
     wine64 \
-    wine32 \
+    wine \
     winetricks \
     gnutls-bin \
     libgnutls30 \
-    libgnutls-dev \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
