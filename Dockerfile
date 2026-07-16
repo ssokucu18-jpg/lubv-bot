@@ -1,9 +1,19 @@
-FROM alpine:latest
+FROM ubuntu:22.04
 
-RUN apk add --no-cache wine
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y \
+    wine64 \
+    wine32 \
+    winetricks \
+    gnutls-bin \
+    libgnutls30 \
+    libgnutls-dev \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 COPY lubv.exe /app/lubv.exe
 
-CMD ["wine", "/app/lubv.exe"]
+CMD ["wine64", "/app/lubv.exe"]
